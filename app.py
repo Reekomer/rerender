@@ -62,7 +62,7 @@ class ProcessingState(Enum):
     KEY_IMGS = 2
 
 
-MAX_KEYFRAME = float(os.environ.get('MAX_KEYFRAME', 8))
+MAX_KEYFRAME = float(os.environ.get('MAX_KEYFRAME', 5000))
 
 
 class GlobalState:
