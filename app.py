@@ -921,41 +921,41 @@ with block:
                                 maximum=frame_count - 2), gr.Slider.update(
                                     value=max_keyframe, maximum=max_keyframe)
 
-    # def input_changed(path):
-    #     frame_count = get_frame_count(path)
-    #     if frame_count <= 2:
-    #         return gr.Slider.update(maximum=1), gr.Slider.update(maximum=1)
+    def input_changed(path):
+        frame_count = get_frame_count(path)
+        if frame_count <= 2:
+            return gr.Slider.update(maximum=1), gr.Slider.update(maximum=1)
 
-    #     default_interval = min(10, frame_count - 2)
-    #     max_keyframe = min((frame_count - 2) // default_interval, MAX_KEYFRAME)
+        default_interval = min(10, frame_count - 2)
+        max_keyframe = min((frame_count - 2) // default_interval, MAX_KEYFRAME)
 
-    #     global video_frame_count
-    #     video_frame_count = frame_count
-    #     global global_video_path
-    #     global_video_path = path
+        global video_frame_count
+        video_frame_count = frame_count
+        global global_video_path
+        global_video_path = path
 
-    #     return gr.Slider.update(value=default_interval,
-    #                             maximum=frame_count - 2), \
-    #         gr.Slider.update(maximum=max_keyframe)
+        return gr.Slider.update(value=default_interval,
+                                maximum=frame_count - 2), \
+            gr.Slider.update(maximum=max_keyframe)
 
-    # def interval_changed(interval):
-    #     global video_frame_count
-    #     if video_frame_count is None:
-    #         return gr.Slider.update()
+    def interval_changed(interval):
+        global video_frame_count
+        if video_frame_count is None:
+            return gr.Slider.update()
 
-    #     max_keyframe = min((video_frame_count - 2) // interval, MAX_KEYFRAME)
+        max_keyframe = min((video_frame_count - 2) // interval, MAX_KEYFRAME)
 
-    #     return gr.Slider.update(value=max_keyframe, maximum=max_keyframe)
+        return gr.Slider.update(value=max_keyframe, maximum=max_keyframe)
 
     # input_path.change(input_changed, input_path, [interval, keyframe_count])
     # input_path.upload(input_uploaded, input_path, [interval, keyframe_count])
     # interval.change(interval_changed, interval, keyframe_count)
 
-    # run_button.click(fn=process,
-    #                  inputs=ips,
-    #                  outputs=[result_image, result_keyframe])
-    # run_button1.click(fn=process1, inputs=ips, outputs=[result_image])
-    # run_button2.click(fn=process2, inputs=ips, outputs=[result_keyframe])
+    run_button.click(fn=process,
+                     inputs=ips,
+                     outputs=[result_image, result_keyframe])
+    run_button1.click(fn=process1, inputs=ips, outputs=[result_image])
+    run_button2.click(fn=process2, inputs=ips, outputs=[result_keyframe])
 
     def process3():
         raise gr.Error(
