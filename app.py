@@ -903,23 +903,23 @@ with block:
                     outputs=[result_image, result_keyframe],
                     cache_examples=True)
 
-    # def input_uploaded(path):
-    #     frame_count = get_frame_count(path)
-    #     if frame_count <= 2:
-    #         raise gr.Error('The input video is too short!'
-    #                        'Please input another video.')
+    def input_uploaded(path):
+        frame_count = get_frame_count(path)
+        if frame_count <= 2:
+            raise gr.Error('The input video is too short!'
+                           'Please input another video.')
 
-    #     default_interval = min(10, frame_count - 2)
-    #     max_keyframe = min((frame_count - 2) // default_interval, MAX_KEYFRAME)
+        default_interval = min(10, frame_count - 2)
+        max_keyframe = min((frame_count - 2) // default_interval, MAX_KEYFRAME)
 
-    #     global video_frame_count
-    #     video_frame_count = frame_count
-    #     global global_video_path
-    #     global_video_path = path
+        global video_frame_count
+        video_frame_count = frame_count
+        global global_video_path
+        global_video_path = path
 
-    #     return gr.Slider.update(value=default_interval,
-    #                             maximum=frame_count - 2), gr.Slider.update(
-    #                                 value=max_keyframe, maximum=max_keyframe)
+        return gr.Slider.update(value=default_interval,
+                                maximum=frame_count - 2), gr.Slider.update(
+                                    value=max_keyframe, maximum=max_keyframe)
 
     # def input_changed(path):
     #     frame_count = get_frame_count(path)
