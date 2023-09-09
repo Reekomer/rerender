@@ -919,7 +919,7 @@ with block:
 
         return gr.Slider.update(value=default_interval,
                                 maximum=frame_count - 2), gr.Slider.update(
-                                    value=max_keyframe, maximum=max_keyframe)
+                                    value=max_keyframe, maximum=5000)
 
     def input_changed(path):
         frame_count = get_frame_count(path)
@@ -936,7 +936,7 @@ with block:
 
         return gr.Slider.update(value=default_interval,
                                 maximum=frame_count - 2), \
-            gr.Slider.update(maximum=max_keyframe)
+            gr.Slider.update(maximum=5000)
 
     def interval_changed(interval):
         global video_frame_count
@@ -945,11 +945,11 @@ with block:
 
         max_keyframe = min((video_frame_count - 2) // interval, MAX_KEYFRAME)
 
-        return gr.Slider.update(value=max_keyframe, maximum=max_keyframe)
+        return gr.Slider.update(value=max_keyframe, maximum=5000)
 
-    # input_path.change(input_changed, input_path, [interval, keyframe_count])
-    # input_path.upload(input_uploaded, input_path, [interval, keyframe_count])
-    # interval.change(interval_changed, interval, keyframe_count)
+    input_path.change(input_changed, input_path, [interval, keyframe_count])
+    input_path.upload(input_uploaded, input_path, [interval, keyframe_count])
+    interval.change(interval_changed, interval, keyframe_count)
 
     run_button.click(fn=process,
                      inputs=ips,
